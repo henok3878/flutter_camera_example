@@ -8,7 +8,7 @@ import 'package:video_player/video_player.dart';
 import '../../../../main.dart';
 
 class RecordViewModel{
-  CameraController _controller = CameraController(cameras[0], ResolutionPreset.high);
+  CameraController _controller = CameraController(cameras[0], ResolutionPreset.max);
   // XFile? imageFile;
   // XFile? videoFile;
   VideoPlayerController? _videoController;
@@ -31,7 +31,7 @@ class RecordViewModel{
    // initCameraValue();
   }
   void initCameraValue() async{
-    await CameraController(cameras[0], ResolutionPreset.high).initialize();
+    await CameraController(cameras[0], ResolutionPreset.max).initialize();
   }
 
   Future<void> stopVideoRecording() async{
