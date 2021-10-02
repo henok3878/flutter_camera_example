@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
 import 'components/bottom_bar.dart';
-import 'controller/record_controller.dart';
+import 'controller/record_viewmodel.dart';
 
 class ControlPreviewScreen extends StatefulWidget {
   const ControlPreviewScreen({Key? key}) : super(key: key);
@@ -14,17 +14,17 @@ class ControlPreviewScreen extends StatefulWidget {
 }
 
 class _ControlPreviewScreenState extends State<ControlPreviewScreen> {
-  var previewController = Get.find<RecordController>();
+  var previewController = Get.find<RecordViewModel>();
   bool videoPlaying = true;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 100.h,
       width: MediaQuery.of(context).size.width,
       child: Column(
         children: [
-          Container(
+          SizedBox(
             height: 7.h,
             child: Row(
               children: [
@@ -44,15 +44,15 @@ class _ControlPreviewScreenState extends State<ControlPreviewScreen> {
               ],
             ),
           ),
-          Container(
+          SizedBox(
             height: 86.h,
             child: InkWell(
-              child: Container(
+              child: SizedBox(
                 height: 86.h,
                 child: Center(
                   child: videoPlaying
                       ? Container()
-                      : Icon(
+                      : const Icon(
                           Icons.play_arrow_rounded,
                           size: 60,
                           color: Colors.white,
@@ -77,15 +77,15 @@ class _ControlPreviewScreenState extends State<ControlPreviewScreen> {
               onTap: () {
                 print('heypause');
                 setState(() {
-                  previewController.videoPlayerController.value.value.isPlaying
+                  previewController.videoController!.value.isPlaying
                       ? videoPlaying = false
                       : videoPlaying = true;
                 });
                 videoPlaying
-                    ? previewController.videoPlayerController.value.play()
-                    : previewController.videoPlayerController.value.pause();
+                    ? previewController.videoController!.play()
+                    : previewController.videoController!.pause();
                 print(previewController
-                    .videoPlayerController.value.value.isPlaying);
+                    .videoController!.value.isPlaying);
               },
             ),
           ),
@@ -143,9 +143,9 @@ class _ControlPreviewScreenState extends State<ControlPreviewScreen> {
 
           //   // : Container(),
           // ),
-          Container(
+          SizedBox(
             height: 7.h,
-            child: BottomBar(),
+            child: const BottomBar(),
           )
         ],
       ),

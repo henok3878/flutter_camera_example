@@ -1,15 +1,14 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_camera_example/ui/short_video/controller/record_viewmodel.dart';
 import 'package:get/get.dart';
-import 'package:kowi_fashion/ui/screens/short_video/controller/record_controller.dart';
-import 'package:kowi_fashion/ui/screens/short_video/controller/record_viewmodel.dart';
 import 'package:sizer/sizer.dart';
 
 import '../preview_screen.dart';
 
-class RecordButton2 extends StatelessWidget {
+class RecordButton extends StatelessWidget {
 
-  const RecordButton2({ Key? key}) : super(key: key);
+  const RecordButton({ Key? key}) : super(key: key);
   Widget build(BuildContext context) {
     RecordViewModel recordViewModel = Get.find<RecordViewModel>();
 
@@ -17,12 +16,12 @@ class RecordButton2 extends StatelessWidget {
       children: [
         Center(
           child: recordViewModel.isVideoRecording
-                ? Icon(
+                ?const Icon(
               Icons.panorama_fish_eye,
               size: 80,
               color: Colors.red,
             )
-                : Icon(
+                : const Icon(
               Icons.panorama_fish_eye,
               size: 20,
               color: Colors.red,
@@ -31,7 +30,7 @@ class RecordButton2 extends StatelessWidget {
         ),
         Center(
           child: GestureDetector(
-            child: CircleAvatar(
+            child: const CircleAvatar(
               radius: 30,
               foregroundColor: Colors.white,
               backgroundColor: Colors.white,

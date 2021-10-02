@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 import 'package:video_player/video_player.dart';
-
-import 'controller/record_controller.dart';
 import 'controller/record_viewmodel.dart';
 
 class RecordPreviewScreen extends StatefulWidget {
@@ -35,12 +33,12 @@ class _RecordPreviewScreenState extends State<RecordPreviewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 100.h,
       width: MediaQuery.of(context).size.width,
       child: Stack(
         children: [
-          Container(
+          SizedBox(
             height: 100.h,
             width: MediaQuery.of(context).size.width,
             child: previewController
@@ -55,7 +53,7 @@ class _RecordPreviewScreenState extends State<RecordPreviewScreen> {
                 : Container(
                     height: 100.h,
                     color: Colors.black,
-                    child: Center(
+                    child: const Center(
                       child: CircularProgressIndicator(
                         color: Colors.white,
                       ),

@@ -8,7 +8,7 @@ import 'package:video_player/video_player.dart';
 import '../../../../main.dart';
 
 class RecordViewModel{
-  CameraController _controller = CameraController(cameras[0], ResolutionPreset.max);
+  CameraController _controller = CameraController(cameras[0], ResolutionPreset.high);
   // XFile? imageFile;
   // XFile? videoFile;
   VideoPlayerController? _videoController;
@@ -31,7 +31,7 @@ class RecordViewModel{
    // initCameraValue();
   }
   void initCameraValue() async{
-    await CameraController(cameras[0], ResolutionPreset.max).initialize();
+    await CameraController(cameras[0], ResolutionPreset.high).initialize();
   }
 
   Future<void> stopVideoRecording() async{
@@ -52,12 +52,12 @@ class RecordViewModel{
   }
 
   void toggleFlashLight(){
-    _isFlashOpen = !isFlashOpen;
+    _isFlashOpen = !_isFlashOpen;
     onUpdate(RecorderActions.flash);
   }
 
   void toggleCameraFacing(){
-    _isCameraOutFacing = !isCameraOutFacing;
+    _isCameraOutFacing = !_isCameraOutFacing;
     onUpdate(RecorderActions.reverse);
   }
 

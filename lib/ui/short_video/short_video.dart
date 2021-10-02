@@ -9,14 +9,13 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_camera_example/ui/short_video/record.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:kowi_fashion/ui/screens/short_video/controller/record_viewmodel.dart';
-import 'package:kowi_fashion/ui/screens/short_video/preview_screen.dart';
-import 'package:kowi_fashion/ui/screens/short_video/record.dart';
-import 'package:video_player/video_player.dart';
 import 'package:sizer/sizer.dart';
+import 'package:video_player/video_player.dart';
 import '../../../main.dart';
+import 'controller/record_viewmodel.dart';
 
 class CameraExampleHome extends StatefulWidget {
 
@@ -76,9 +75,16 @@ class _CameraExampleHomeState extends State<CameraExampleHome>
         case RecorderActions.flash:
           onToggleFlash();
           break;
+        case RecorderActions.audio:
+          // TODO: Handle this case.
+          break;
+        case RecorderActions.updateCamera:
+          setState(()=>{});
+          break;
         default:
           setState(()=>{});
-      }}));
+      }
+    }));
     //cameraValue = controller.initialize();
     recordController.cameraValue =
         recordController.controller.initialize().then((_) {
@@ -143,7 +149,7 @@ class _CameraExampleHomeState extends State<CameraExampleHome>
 
   @override
   Widget build(BuildContext context) {
-
+    print("Short video build method...");
     return FutureBuilder(
         future: recordController.cameraValue,
         builder: (context, snapshot) {
@@ -151,7 +157,7 @@ class _CameraExampleHomeState extends State<CameraExampleHome>
             return Container(
               height: 100.h,
               color: Colors.black,
-              child: Center(
+              child: const Center(
                 child: CircularProgressIndicator(
                   color: Colors.red,
                 ),
@@ -163,7 +169,7 @@ class _CameraExampleHomeState extends State<CameraExampleHome>
             return Container(
               height: 100.h,
               color: Colors.black,
-              child: Center(
+              child: const Center(
                 child: CircularProgressIndicator(
                   color: Colors.blue,
                 ),
@@ -175,7 +181,7 @@ class _CameraExampleHomeState extends State<CameraExampleHome>
             return Container(
               height: 100.h,
               color: Colors.black,
-              child: Center(
+              child: const Center(
                 child: CircularProgressIndicator(
                   color: Colors.white,
                 ),
@@ -184,7 +190,7 @@ class _CameraExampleHomeState extends State<CameraExampleHome>
           }
 
           if (snapshot.connectionState == ConnectionState.done) {
-
+            print("Connection state : done");
             return Scaffold(
               key: _scaffoldKey,
               body: Stack(
@@ -195,8 +201,7 @@ class _CameraExampleHomeState extends State<CameraExampleHome>
                     color: Colors.black,
                     padding: const EdgeInsets.all(1.0),
                     child: _cameraPreviewWidget(),
-                  ),
-                  RecordScreen()
+                  ), RecordScreen()
                 ],
               ),
             );
@@ -398,7 +403,6 @@ class _CameraExampleHomeState extends State<CameraExampleHome>
   void onSetFlashModeButtonPressed(FlashMode mode) {
     setFlashMode(mode).then((_) {
       if (mounted) setState(() {});
-      showInSnackBar('Flash mode set to ${mode.toString().split('.').last}');
     });
   }
 

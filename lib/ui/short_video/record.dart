@@ -1,13 +1,7 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:kowi_fashion/ui/screens/short_video/components/record_button2.dart';
-import 'package:kowi_fashion/ui/screens/short_video/components/sidebar.dart';
-import 'package:kowi_fashion/ui/screens/short_video/controller/record_viewmodel.dart';
 import 'package:sizer/sizer.dart';
-
 import 'components/record_button.dart';
-import 'controller/record_controller.dart';
+import 'components/sidebar.dart';
 
 class RecordScreen extends StatelessWidget {
   static const String routeName = "/record_screen";
@@ -16,6 +10,7 @@ class RecordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("Build called record screen");
     return Container(
       height: 100.h,
       width: MediaQuery.of(context).size.width,
@@ -27,7 +22,7 @@ class RecordScreen extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Container(
+                SizedBox(
                   width: MediaQuery.of(context).size.width * 0.20,
                   height: 100.h,
                   child: Column(
@@ -72,7 +67,7 @@ class RecordScreen extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             //color: Color.fromRGBO(200, 10, 230, 0.3),
             alignment: Alignment.topCenter,
-            child: RecordButton2(),
+            child:  RecordButton(),
           ),
         ],
       ),
